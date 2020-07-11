@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Periodo</h2>
+
+
+<link href="~/Content/datatables.css" rel="stylesheet" />
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+
+
+
+<label>Ingrese Nombre Periodo:</label>
+<input type="text" id="txtPeriodo" placeholder="Ingrese Nombre" />
+<br />
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Agregar</button>
+<br /><br />
+<div id="tabla"></div>
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <table style="width:80%;margin:auto">
+                    <tr>
+                        <td width="40%">ID PERIODO</td>
+                        <td width="60%"><input type="text" id="txtidPeriodo" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td width="40%">NOMBRE PERIODO</td>
+                        <td width="60%"><input type="text" id="txtNombre" /></td>
+                    </tr>
+                    <tr>
+                        <td>Fecha Inicio</td>
+                        <td><input id="datepickerInicio" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td>Fecha Fin</td>
+                        <td><input id="datepickerFin" type="text" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnAceptar">Aceptar</button>
+                <button type="button" class="btn btn-danger" id="btnCancelar" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/datatables.min.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Scripts/periodo.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
