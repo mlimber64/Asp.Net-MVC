@@ -17,6 +17,12 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public JsonResult findAllSexo()
+        {
+            var lista = (bd.Sexo.Where(p => p.BHABILITADO.Equals(1)).Select(p => new { IID = p.IIDSEXO, p.NOMBRE })).ToList();
+            return Json(lista, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult findAllDocente()
         {
             //var lista = (from docente in bd.Docente where docente.BHABILITADO.Equals(1) select new { docente.IIDDOCENTE, docente.NOMBRE, docente.APPATERNO, docente.APMATERNO, docente.EMAIL }).ToList();

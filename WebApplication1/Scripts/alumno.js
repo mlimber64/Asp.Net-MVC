@@ -18,6 +18,7 @@ $.get("findAllSexo", "Alumno", function (data) {
 });
 
 
+
 function llenarCombo(data, control,primerElemento) {
 
     var contenido = "";

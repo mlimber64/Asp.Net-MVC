@@ -1,5 +1,37 @@
-﻿listar();
-listaomboModalidad();
+﻿llenarComboSexoAlumno();
+listar();
+
+function llenarComboSexoAlumno() {
+
+    $.get("findAllSexo","Docente", function (data) {
+
+        llenarCombo(data, document.getElementById("combosexopopup"), true);
+    });
+}
+
+
+//listaComboModalidad();
+
+
+//$.get("findAllSexo/Alumno", function (data) {
+
+//    llenarCombo(data, document.getElementById("combosexo"), true);
+//    llenarCombo(data, document.getElementById("combosexopopup"), true);
+//});
+
+//function listaComboModalidad() {
+
+//    $.get("findAllModalidadContrato/Docente", function (data) {
+
+//        llenarCombo(data, document.getElementById("cboTipoModalidad"), true);
+//        llenarCombo(data, document.getElementById("cbomodalidadpopup"), true);
+
+//    });
+
+   
+
+//}
+//llenarComboSexoAlumno();
 
 
 
@@ -10,6 +42,16 @@ function listar() {
         crearListado(["ID","NOMBRE","APELLIDO PATERNO","APELLIDO MATERNO","EMAIL"],data);
 
     });
+
+   
+
+    $.get("findAllModalidadContrato/Docente", function (data) {
+
+        llenarCombo(data, document.getElementById("cboTipoModalidad"), true);
+        llenarCombo(data, document.getElementById("cbomodalidadpopup"), true);
+
+    });
+
 }
 
 function crearListado(arrayColumnas, data) {
@@ -67,26 +109,6 @@ function crearListado(arrayColumnas, data) {
 
 
 
-
-
-function listaomboModalidad() {
-
-    $.get("findAllModalidadContrato/Docente", function (data) {
-
-        llenarCombo(data, document.getElementById("cboTipoModalidad"), true);
-        llenarCombo(data, document.getElementById("cbomodalidadpopup"), true);
-
-    });
-
-    $.get("findAllSexo", "Alumno", function (data) {
-
-        llenarCombo(data, document.getElementById("cboSexopouop"), true);
-    });
-}
-
-
-
-
 function llenarCombo(data, control, primerElemento) {
 
     var contenido = "";
@@ -132,3 +154,8 @@ $("#txtfechacontrato").datepicker(
         changeYear: true
     }
 );
+$.get("findAllSexo", "Alumno", function (data) {
+
+    llenarCombo(data, document.getElementById("combosexo"), true);
+    llenarCombo(data, document.getElementById("combosexopopup"), true);
+});
