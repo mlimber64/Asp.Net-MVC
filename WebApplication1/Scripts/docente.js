@@ -10,29 +10,6 @@ function llenarComboSexoAlumno() {
 }
 
 
-//listaComboModalidad();
-
-
-//$.get("findAllSexo/Alumno", function (data) {
-
-//    llenarCombo(data, document.getElementById("combosexo"), true);
-//    llenarCombo(data, document.getElementById("combosexopopup"), true);
-//});
-
-//function listaComboModalidad() {
-
-//    $.get("findAllModalidadContrato/Docente", function (data) {
-
-//        llenarCombo(data, document.getElementById("cboTipoModalidad"), true);
-//        llenarCombo(data, document.getElementById("cbomodalidadpopup"), true);
-
-//    });
-
-   
-
-//}
-//llenarComboSexoAlumno();
-
 
 
 function listar() {

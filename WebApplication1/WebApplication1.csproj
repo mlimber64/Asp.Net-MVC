@@ -93,6 +93,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cssPropio.css" />
     <Content Include="Content\datatables.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -113,6 +114,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\periodo.js" />
+    <Content Include="Scripts\seccion.js" />
     <Content Include="Scripts\sumar.js" />
     <Content Include="Scripts\tablajson.js" />
     <Content Include="Web.config" />
@@ -129,12 +131,14 @@
     <Compile Include="Controllers\DocenteController.cs" />
     <Compile Include="Controllers\PeriodoController.cs" />
     <Compile Include="Controllers\RepasoHTMLController.cs" />
+    <Compile Include="Controllers\SeccionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\Periodo.cs" />
     <Compile Include="Models\Persona.cs" />
+    <Compile Include="Models\Seccion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Prueba.designer.cs">
       <AutoGen>True</AutoGen>
@@ -154,6 +158,7 @@
     <Content Include="Views\RepasoHTML\ComboJs.cshtml" />
     <Content Include="Views\Alumno\Index.cshtml" />
     <Content Include="Views\Docente\Index.cshtml" />
+    <Content Include="Views\Seccion\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

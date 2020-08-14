@@ -1,9 +1,11 @@
-﻿$.get("findAllCurso", "Curso", function (data) {
+﻿listar();
 
-    crearListado(data);
+function listar() {
+    $.get("findAllCurso", "Curso", function (data) {
+        crearListado(["ID", "NOMBRE","DESCRIPCION"], data);
+    });
+}
 
-
-});
 
 var btnBuscar = document.getElementById("btnBuscar");
 
@@ -28,39 +30,106 @@ btnLimpiar.onclick = function () {
     document.getElementById("txtNombre").value = "";
 }
 
-function crearListado(data) {
+function crearListado(arrayColumnas, data) {
 
     var contenido = "";
 
     contenido += "<table id='tabla-curso' class='table table-bordered table-striped'>";
     contenido += "<thead>";
     contenido += "<tr>";
-    contenido += "<td>Id Curso</td>";
-    contenido += "<td>Nombre</td>";
-    contenido += "<td>Descripcion</td>";
-    contenido += "<td>Acciones</td>";
+    for (var i = 0; i < arrayColumnas.length; i++) {
+
+        contenido += "<td>"
+
+        contenido += arrayColumnas[i];
+
+        contenido += "</td>"
+    }
+    contenido += "<td>Acciones</td>"
     contenido += "</tr>";
     contenido += "</thead>";
+
+    var llaves = Object.keys(data[0]);
+    
+
     contenido += "<tbody>";
 
     for (var i = 0; i < data.length; i++) {
 
         contenido += "<tr>";
-        contenido += "<td>" + data[i].IIDCURSO + "</td>";
-        contenido += "<td>" + data[i].NOMBRE + "</td>";
-        contenido += "<td>" + data[i].DESCRIPCION + "</td>";
+        for (var j = 0; j < llaves.length; j++) {
+
+            var valorLlaves = llaves[j];
+
+            contenido += "<td>";
+
+            contenido += data[i][valorLlaves];
+
+            contenido += "</td>";
+
+        }
+
+        var llaveId = llaves[0];
+
         contenido += "<td>";
-        contenido += "<button class='btn btn-primary' data-toggle='modal' data-target='#myModal'><i class='glyphicon glyphicon-edit'></i></button> ";
+        contenido += "<button class='btn btn-primary' onclick='abrirModal(" + data[i][llaveId] + ")' data-toggle='modal' data-target='#myModal'><i class='glyphicon glyphicon-edit'></i></button> ";
         contenido += "<button class='btn btn-danger'><i class='glyphicon glyphicon-trash'></i></button>";
         contenido += "</td>";
         contenido += "</tr>";
     }
-    
+
     contenido += "</tbody>";
     contenido += "</table>";
     document.getElementById("tabla").innerHTML = contenido;
     $("#tabla-curso").dataTable({
 
-        searching : false
+        searching: false
     });
+}
+
+function abrirModal(id) {
+    if (id == 0) {
+        borrarDatos();
+
+    } else {
+
+        $.get("repuerarDatos/Curso/?id_curso=" + id, function (data) {
+            document.getElementById("txtidCurso").value = data[0].IIDCURSO;
+            document.getElementById("txtNombreCurso").value = data[0].NOMBRE;
+            document.getElementById("txtDescripcion").value = data[0].DESCRIPCION;
+
+        });
+    }
+    
+}
+
+function borrarDatos() {
+
+    var controles = document.getElementsByClassName("borrar");
+    var ncontroles = controles.length;
+    for (var i = 0; i < ncontroles; i++) {
+
+        controles[i].value = " ";
+    }
+}
+
+function Agregar() {
+    datosObligatorios();
+}
+
+function datosObligatorios() {
+
+    var exito = true;
+    var controlesObligarios = document.getElementsByClassName("obligatorio");
+    var ncontroles = controlesObligarios.length;
+    for (var i = 0; i < ncontroles; i++) {
+
+        if (controlesObligarios[i].value = " ") {
+            exito = false;
+            controlesObligarios[i].parentNode.classList.add("error");
+        } else {
+            controlesObligarios[i].parentNode.classList.remove("error");
+        }
+    }
+    return exito;
 }
