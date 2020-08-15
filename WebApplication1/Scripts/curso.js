@@ -73,7 +73,7 @@ function crearListado(arrayColumnas, data) {
 
         contenido += "<td>";
         contenido += "<button class='btn btn-primary' onclick='abrirModal(" + data[i][llaveId] + ")' data-toggle='modal' data-target='#myModal'><i class='glyphicon glyphicon-edit'></i></button> ";
-        contenido += "<button class='btn btn-danger'><i class='glyphicon glyphicon-trash'></i></button>";
+        contenido += "<button class='btn btn-danger' onclick='eliminar(" + data[i][llaveId] +")'><i class='glyphicon glyphicon-trash'></i></button>";
         contenido += "</td>";
         contenido += "</tr>";
     }
@@ -87,7 +87,42 @@ function crearListado(arrayColumnas, data) {
     });
 }
 
+function eliminar(id) {
+
+    var frm = new FormData();
+    frm.append("IIDCURSO", id);
+    if (confirm("¿Desea realmente elinar este registro?") == 1) {
+
+        $.ajax({
+            type: "POST",
+            url: "elininarCurso/Curso",
+            data: frm,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+
+                if (data != 0) {
+                    listar();
+                    alert("Se ejecuto correctamente");
+                    document.getElementById("btnCancelar").click();
+                } else {
+                    alert("Ocurrio un Error");
+                }
+            }
+        });
+
+    }
+}
+
 function abrirModal(id) {
+
+    var controlesObligarios = document.getElementsByClassName("obligatorio");
+    var ncontroles = controlesObligarios.length;
+
+    for (var i = 0; i < ncontroles; i++) {
+        controlesObligarios[i].parentNode.classList.remove("error");
+    }
+
     if (id == 0) {
         borrarDatos();
 
@@ -109,12 +144,50 @@ function borrarDatos() {
     var ncontroles = controles.length;
     for (var i = 0; i < ncontroles; i++) {
 
-        controles[i].value = " ";
+        controles[i].value = "";
     }
 }
 
 function Agregar() {
-    datosObligatorios();
+
+    if (datosObligatorios() == true) {
+
+        var frm = new FormData();
+        var id = document.getElementById("txtidCurso").value;
+        var nombre = document.getElementById("txtNombreCurso").value;
+        var descripcion = document.getElementById("txtDescripcion").value;
+
+        frm.append("IIDCURSO", id);
+        frm.append("NOMBRE", nombre);
+        frm.append("DESCRIPCION", descripcion);
+        frm.append("BHABILITADO", 1);
+
+        if (confirm("¿Desea realmente guardar?") == 1) {
+
+            $.ajax({
+                type: "POST",
+                url: "guardarDatos/Curso",
+                data: frm,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+
+                    if (data != 0) {
+                        listar();
+                        alert("Se ejecuto correctamente");
+                        document.getElementById("btnCancelar").click();
+                    } else {
+                        alert("Ocurrio un Error");
+                    }
+                }
+            });
+
+        }
+
+
+    } else {
+
+    }
 }
 
 function datosObligatorios() {
@@ -124,7 +197,7 @@ function datosObligatorios() {
     var ncontroles = controlesObligarios.length;
     for (var i = 0; i < ncontroles; i++) {
 
-        if (controlesObligarios[i].value = " ") {
+        if (controlesObligarios[i].value == "") {
             exito = false;
             controlesObligarios[i].parentNode.classList.add("error");
         } else {
