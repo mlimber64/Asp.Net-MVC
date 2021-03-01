@@ -14,7 +14,7 @@
 <input type="button" id="btnBuscar" value="BUSCAR" class="btn btn-primary" />
 <input type="button" id="btnLimpiar" value="LIMPIAR" class="btn btn-metal" />
 <br><br />
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Agregar</button>
+<button type="button" onclick="abrirModal(0)" class="btn btn-info" data-toggle="modal" data-target="#myModal">Agregar</button>
 <br><br />
 <div id="tabla"></div>
 
@@ -33,45 +33,45 @@
                 <table style="width:80%;margin:auto">
                     <tr>
                         <td width="40%">ID</td>
-                        <td width="60%"><input type="text" id="txtidPeriodo" readonly /></td>
+                        <td width="60%"><input class="borrar" type="text" id="txtidPeriodo" readonly /></td>
                     </tr>
                     <tr>
                         <td width="40%">NOMBRE</td>
-                        <td width="60%"><input type="text" id="txtNombre" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="text" id="txtNombre" /></td>
                     </tr>
                     <tr>
                         <td width="40%">APELLIDO PATERNO</td>
-                        <td width="60%"><input type="text" id="txtapepa" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="text" id="txtapepa" /></td>
                     </tr>
                     <tr>
                         <td width="40%">APELLIDO MATERNO</td>
-                        <td width="60%"><input type="text" id="txtapema" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="text" id="txtapema" /></td>
                     </tr>
                     <tr>
                         <td width="40%">FECHA NACIMIENTO</td>
-                        <td width="60%"><input type="text" id="dtfechanac" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="text" id="dtfechanac" /></td>
                     </tr>
                     <tr>
                         <td width="40%">SEXO</td>
-                        <td width="60%"><select id="cboSexopopup"></select></td>
+                        <td width="60%"><select class="borrar obligatorio" id="cboSexopopup"></select></td>
                     </tr>
                     <tr>
                         <td width="40%">TELEFONO PATERNO</td>
-                        <td width="60%"><input type="text" id="txttelfpa" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="text" id="txttelfpa" /></td>
                     </tr>
                     <tr>
                         <td width="40%">TELEFONO MATERNO</td>
-                        <td width="60%"><input type="number" id="txttelma" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="number" id="txttelma" /></td>
                     </tr>
                     <tr>
                         <td width="40%">NUMERO HERMANOS</td>
-                        <td width="60%"><input type="number" id="txtnroher" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="number" id="txtnroher" /></td>
                     </tr>
                     
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="btnAceptar">Aceptar</button>
+                <button onclick="agregar()" type="button" class="btn btn-success" id="btnAceptar">Aceptar</button>
                 <button type="button" class="btn btn-danger" id="btnCancelar" data-dismiss="modal">Cancelar</button>
             </div>
         </div>

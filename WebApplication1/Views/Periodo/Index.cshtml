@@ -14,7 +14,7 @@
 <label>Ingrese Nombre Periodo:</label>
 <input type="text" id="txtPeriodo" placeholder="Ingrese Nombre" />
 <br />
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Agregar</button>
+<button type="button" onclick="abrirModal(0)" class="btn btn-info" data-toggle="modal" data-target="#myModal">Agregar</button>
 <br /><br />
 <div id="tabla"></div>
 
@@ -34,24 +34,24 @@
                 <table style="width:80%;margin:auto">
                     <tr>
                         <td width="40%">ID PERIODO</td>
-                        <td width="60%"><input type="text" id="txtidPeriodo" readonly /></td>
+                        <td width="60%"><input class="borrar" type="text" id="txtidPeriodo" readonly /></td>
                     </tr>
                     <tr>
                         <td width="40%">NOMBRE PERIODO</td>
-                        <td width="60%"><input type="text" id="txtNombre" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="text" id="txtNombre" /></td>
                     </tr>
                     <tr>
                         <td>Fecha Inicio</td>
-                        <td><input id="datepickerInicio" type="text" /></td>
+                        <td><input class="borrar obligatorio" id="datepickerInicio" type="text" /></td>
                     </tr>
                     <tr>
                         <td>Fecha Fin</td>
-                        <td><input id="datepickerFin" type="text" /></td>
+                        <td><input class="borrar obligatorio" id="datepickerFin" type="text" /></td>
                     </tr>
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="btnAceptar">Aceptar</button>
+                <button onclick="agregar()" type="button" class="btn btn-success" id="btnAceptar">Aceptar</button>
                 <button type="button" class="btn btn-danger" id="btnCancelar" data-dismiss="modal">Cancelar</button>
             </div>
         </div>

@@ -12,7 +12,7 @@
 <label>Ingrese Modalidad Contrato</label>
 <select id="cboTipoModalidad"></select>
 <br><br />
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Agregar</button>
+<button onclick="abrirModal(0)" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Agregar</button>
 <br><br />
 <div id="tabla"></div>
 
@@ -30,58 +30,63 @@
                 <table style="width:80%;margin:auto">
                     <tr>
                         <td width="40%">ID</td>
-                        <td width="60%"><input type="text" id="txtiddocente" readonly /></td>
+                        <td width="60%"><input class="borrar" type="text" id="txtiddocente" readonly /></td>
                     </tr>
                     <tr>
                         <td width="40%">NOMBRE</td>
-                        <td width="60%"><input type="text" id="txtNombre" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="text" id="txtNombre" /></td>
                     </tr>
                     <tr>
                         <td width="40%">APELLIDO PATERNO</td>
-                        <td width="60%"><input type="text" id="txtApePat" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="text" id="txtApePat" /></td>
                     </tr>
                     <tr>
                         <td width="40%">APELLIDO MATERNO</td>
-                        <td width="60%"><input type="text" id="txtapemat" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="text" id="txtapemat" /></td>
                     </tr>
                     <tr>
                         <td width="40%">DIRECCIÓN</td>
-                        <td width="60%"><input type="text" id="txtdirecciom" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="text" id="txtdirecciom" /></td>
                     </tr>
                     <tr>
                         <td width="40%">TELEFONO CELULAR</td>
-                        <td width="60%"><input type="number" id="txttelefonocel" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="number" id="txttelefonocel" /></td>
                     </tr>
                     <tr>
                         <td width="40%">TELEFONO FIJO</td>
-                        <td width="60%"><input type="number" id="txttelefonofijo" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="number" id="txttelefonofijo" /></td>
                     </tr>
                     <tr>
                         <td width="40%">EMAIL</td>
-                        <td width="60%"><input type="text" id="txtemail" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="text" id="txtemail" /></td>
                     </tr>
                     <tr>
                         <td width="40%">SEXO</td>
-                        <td width="60%"><select id="combosexopopup"></select></td>
+                        <td width="60%"><select class="borrar obligatorio" id="combosexopopup"></select></td>
 
                     </tr>
                     <tr>
                         <td width="40%">FECHA CONTRATO</td>
-                        <td width="60%"><input type="text" id="txtfechacontrato" /></td>
+                        <td width="60%"><input class="borrar obligatorio" type="text" id="txtfechacontrato" /></td>
+                    </tr>
+                    <tr>
+                        <td width="40%">MODALIDAD</td>
+                        <td width="60%"><select class="borrar obligatorio" id="cbomodalidadpopup"></select></td>
                     </tr>
                     <tr>
                         <td width="40%">FOTO</td>
                         <td width="60%"><img id="imgfoto" width="150" height="100" style="border:1px solid" /></td>
                     </tr>
                     <tr>
-                        <td width="40%">MODALIDAD</td>
-                        <td width="60%"><select id="cbomodalidadpopup"></select></td>
+                        <td width="40%"></td>
+                        <td width="60%"><input type="file" value="..." id="btnFoto"/></td>
                     </tr>
+
 
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="btnAceptar">Aceptar</button>
+                <button onclick="agregar()" type="button" class="btn btn-success" id="btnAceptar">Aceptar</button>
                 <button type="button" class="btn btn-danger" id="btnCancelar" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
@@ -91,5 +96,5 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery-ui.min.js"></script>
 <script src="~/Scripts/datatables.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="~/Scripts/docente.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
