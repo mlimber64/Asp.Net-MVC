@@ -119,6 +119,7 @@
     <Content Include="Scripts\seccion.js" />
     <Content Include="Scripts\sumar.js" />
     <Content Include="Scripts\tablajson.js" />
+    <Content Include="Scripts\test.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Periodo\Index.cshtml" />
     <Content Include="Views\RepasoHTML\Index.cshtml" />
