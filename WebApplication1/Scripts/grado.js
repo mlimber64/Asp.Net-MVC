@@ -149,3 +149,61 @@ function abrirModal(id) {
 
 }
 
+
+function agregar() {
+
+    if (datosObligatorios() == true) {
+
+        var frm = new FormData();
+        var id = document.getElementById("txtIdGSeccion").value;
+        var grado = document.getElementById("cboGrado").value;
+        var seccion = document.getElementById("cboSeccion").value;
+
+        frm.append("IID", id);
+        frm.append("IIDGRADO", grado);
+        frm.append("IIDSECCION", seccion);
+        frm.append("BHABILITADO", 1);
+
+        if (confirm("¿Desea realmente guardar?") == 1) {
+
+            $.ajax({
+                type: "POST",
+                url: "guardarDatos/GradoSeccion",
+                data: frm,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+
+                    if (data != 0) {
+                        listar();
+                        alert("Se ejecuto correctamente");
+                        document.getElementById("btnCancelar").click();
+                    } else {
+                        alert("Ocurrio un Error");
+                    }
+                }
+            });
+
+        }
+
+
+    } else {
+
+    }
+}
+
+
+function eliminar(id) {
+
+    if (confirm("Desea eliminar") == 1) {
+
+        $.get("eliminar/GradoSeccion/?id_Grado=" + id, function (data) {
+            if (data == 0) {
+                alert("Ocurrio un error");
+            } else {
+                alert("Se elimino correctamente");
+                listar();
+            }
+        })
+    }
+}

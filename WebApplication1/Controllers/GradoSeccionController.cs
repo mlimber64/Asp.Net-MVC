@@ -23,6 +23,7 @@ namespace WebApplication1.Controllers
                          on gradosec.IIDSECCION equals sec.IIDSECCION
                          join grad in bd.Grado
                          on gradosec.IIDGRADO equals grad.IIDGRADO
+                         where gradosec.BHABILITADO.Equals(1)
                          select new
                          {
                              gradosec.IID,
@@ -56,6 +57,52 @@ namespace WebApplication1.Controllers
         {
             var lista = bd.Grado.Where(p => p.BHABILITADO.Equals(1)).Select(p => new { IID = p.IIDGRADO, p.NOMBRE });
             return Json(lista, JsonRequestBehavior.AllowGet);
+        }
+
+        public int guardarDatos(GradoSeccion oGradoSeccion)
+        {
+            int nroregistros = 0;
+            try
+            {
+                int id = oGradoSeccion.IID;
+                if(id == 0)
+                {
+                    bd.GradoSeccion.InsertOnSubmit(oGradoSeccion);
+                    bd.SubmitChanges();
+                    nroregistros = 1;
+                }
+                else
+                {
+                    GradoSeccion obj = bd.GradoSeccion.Where(p => p.IID.Equals(id)).First();
+                    obj.IIDGRADO = oGradoSeccion.IIDGRADO;
+                    obj.IIDSECCION = oGradoSeccion.IIDSECCION;
+                    bd.SubmitChanges();
+                    nroregistros = 1;
+                }
+
+            }catch(Exception e)
+            {
+                nroregistros = 0;
+            }
+            return nroregistros;
+
+        }
+
+        public int eliminar(int id_Grado)
+        {
+            int nroregistros = 0;
+            try
+            {
+                GradoSeccion obj = bd.GradoSeccion.Where(p => p.IID.Equals(id_Grado)).First();
+                obj.BHABILITADO = 0;
+                bd.SubmitChanges();
+                nroregistros = 1;
+            }catch(Exception e)
+            {
+                nroregistros = 0;
+            }
+            return nroregistros;
+            
         }
     }
 

@@ -135,6 +135,7 @@
     <Compile Include="Controllers\GradoSeccionController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\PeriodoController.cs" />
+    <Compile Include="Controllers\PeriodoGradoCurso.cs" />
     <Compile Include="Controllers\RepasoHTMLController.cs" />
     <Compile Include="Controllers\SeccionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -166,6 +167,7 @@
     <Content Include="Views\Seccion\Index.cshtml" />
     <Content Include="Views\Matricula\Index.cshtml" />
     <Content Include="Views\GradoSeccion\Index.cshtml" />
+    <Content Include="Views\PeriodoGradoCurso\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

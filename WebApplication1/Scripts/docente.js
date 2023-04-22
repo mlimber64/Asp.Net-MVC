@@ -167,7 +167,7 @@ function borrarDatos() {
     }
 }
 
-function datosObligatorios() {
+function obligatorio() {
 
     var exito = true;
     var controlesObligarios = document.getElementsByClassName("obligatorio");
