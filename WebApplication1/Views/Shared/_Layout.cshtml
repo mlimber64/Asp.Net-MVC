@@ -15,11 +15,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Curso", "Index", "Curso", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Periodo", "Periodo", "Index", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Alumno", "Index", "Alumno", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Docente", "Index", "Docente", new { area = "" }, new { @class = "navbar-brand" })
-
+                @Html.ActionLink("Curso", "/Index", "Curso", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Periodo", "/Index", "Periodo", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Alumno", "/Index", "Alumno", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Docente", "/Index", "Docente", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Matricula", "/Index", "Matricula", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Grado", "/Index", "Grado", new { area = "" }, new { @class = "navbar-brand" })}
+                @Html.ActionLink("Sección", "/Index", "Seccion", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Grado Y Sección", "/Index", "GradoSeccion", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Periodo Y Grado", "/Index", "PeriodoGradoCurso", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
