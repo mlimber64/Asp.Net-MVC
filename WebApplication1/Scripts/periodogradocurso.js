@@ -29,7 +29,7 @@ function crearListado(arrayColumnas, data) {
 
     var contenido = "";
 
-    contenido += "<table id='tabla-pgc' class='table table-bordered table-striped'>";
+    contenido += "<table id='tabla-periodog' class='table table-bordered table-striped'>";
     contenido += "<thead>";
     contenido += "<tr>";
     for (var i = 0; i < arrayColumnas.length; i++) {
@@ -76,7 +76,7 @@ function crearListado(arrayColumnas, data) {
     contenido += "</tbody>";
     contenido += "</table>";
     document.getElementById("tabla").innerHTML = contenido;
-    $("#tabla-pgc").dataTable({
+    $("#tabla-periodog").dataTable({
 
         searching: false
     });
@@ -143,7 +143,7 @@ function abrirModal(id) {
 
     } else {
 
-        $.get("recuperarInfo/PeriodoGCurso/?id_pgc = " + id, function (data) {
+        $.get("recuperarInfo/PeriodoGCurso/?id_pgc=" + id, function (data) {
             document.getElementById("txtId").value = data[0].IID;
             document.getElementById("cboPeriodo").value = data[0].IIDPERIODO;
             document.getElementById("cboGrado").value = data[0].IIDGRADO;

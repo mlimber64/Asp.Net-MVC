@@ -38,8 +38,7 @@ namespace WebApplication1.Controllers
 
         public JsonResult recuperarInfo(int id_pgc)
         {
-            var lista = db.PeriodoGradoCurso.Where(p => p.IID.Equals(id_pgc)).
-                Select(p => new
+            var lista = db.PeriodoGradoCurso.Where(p => p.IID.Equals(id_pgc)).Select(p => new
                 {
                     p.IID,
                     p.IIDPERIODO,
