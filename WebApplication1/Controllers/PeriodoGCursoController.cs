@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
                          on pgc.IIDGRADO equals grad.IIDGRADO
                          join cur in db.Curso
                          on pgc.IIDCURSO equals cur.IIDCURSO
-
+                         where pgc.BHABILITADO.Equals(1)
                          select new
                          {
                              pgc.IID,
@@ -84,6 +84,55 @@ namespace WebApplication1.Controllers
                 });
 
             return Json(lista, JsonRequestBehavior.AllowGet);
+        }
+
+        public int guardarDatos(PeriodoGradoCurso oPeriodoGCurso)
+        {
+            int nregistros = 0;
+
+            try
+            {
+                int id = oPeriodoGCurso.IID;
+                if(id == 0)
+                {
+                    db.PeriodoGradoCurso.InsertOnSubmit(oPeriodoGCurso);
+                    db.SubmitChanges();
+                    nregistros = 1;
+                }
+                else
+                {
+                    PeriodoGradoCurso obj = db.PeriodoGradoCurso.Where(p => p.IID.Equals(id)).First();
+                    
+                    obj.IIDGRADO = oPeriodoGCurso.IIDGRADO;
+                    obj.IIDCURSO = oPeriodoGCurso.IIDCURSO;
+                    obj.IIDPERIODO = oPeriodoGCurso.IIDPERIODO;
+                    db.SubmitChanges();
+                    nregistros = 1;
+                }
+
+            }catch(Exception e)
+            {
+                nregistros = 0;
+            }
+
+            return nregistros;
+        }
+
+        public int eliminar(int id_periodo)
+        {
+            int nregistros = 0;
+            try
+            {
+                PeriodoGradoCurso obj = db.PeriodoGradoCurso.Where(p => p.IID.Equals(id_periodo)).First();
+                obj.BHABILITADO = 0;
+                db.SubmitChanges();
+                nregistros = 1;
+
+            }catch(Exception e)
+            {
+                nregistros = 0;
+            }
+            return nregistros;
         }
     }
 }

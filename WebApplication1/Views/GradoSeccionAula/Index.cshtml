@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/datatables.css" rel="stylesheet" />
+<link href="~/Content/cssPropio.css" rel="stylesheet" />
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+
+<h2>Index</h2>
+
+
+
+<button onclick="abrirModal(0)" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Agregar</button>
+<br><br />
+<div id="tabla"></div>
+
+<!-- Modal -->
+<div id="myModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <table style="width:80%;margin:auto">
+                    <tr>
+                        <td width="40%">ID</td>
+                        <td width="60%"><input class="borrar" type="text" id="txtId" readonly disabled /></td>
+                    </tr>
+                    <tr>
+                        <td width="40%">PERIODO</td>
+                        <td width="60%"><select class="obligatorio borrar" id="cboPeriodo"></select></td>
+                    </tr>
+                    <tr>
+                        <td width="40%">GRADO SECCION</td>
+                        <td width="60%"><select class="borrar obligatorio" id="cboGrado"></select></td>
+                    </tr>
+                    <tr>
+                        <td width="40%">CURSO</td>
+                        <td width="60%"><select class="borrar obligatorio" id="cboCurso"></select></td>
+                    </tr>
+                    <tr>
+                        <td width="40%">DOCENTE</td>
+                        <td width="60%"><select class="borrar obligatorio" id="cboDocente"></select></td>
+                    </tr>
+                    <tr>
+                        <td width="40%">AULA</td>
+                        <td width="60%"><select class="borrar obligatorio" id="cboAula"></select></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="agregar()" class="btn btn-success" id="btnAceptar">Aceptar</button>
+                <button type="button" class="btn btn-danger" id="btnCancelar" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Scripts/datatables.min.js"></script>
+<script src="~/Scripts/gradoseccionaula.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

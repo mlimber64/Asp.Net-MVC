@@ -1,28 +1,74 @@
-﻿
+﻿listar();
+
+var periodo = document.getElementById("cboPeriodo");
+var gradoseccion = document.getElementById("cboGrado");
+
+periodo.onchange = function () {
+
+    if (periodo.value != "" && gradoseccion.value != "") {
+
+        $.get("listarCursos/GradoSeccionAula/?idperiodo=" + periodo.value + "&idgradoseccion=" + gradoseccion.value, function (data) {
+
+            llenarCombo(data, document.getElementById("cboCurso"), true);
+
+        })
+    }
+
+}
+
+gradoseccion.onchange = function () {
+
+    if (periodo.value != "" && gradoseccion.value != "") {
+
+        $.get("listarCursos/GradoSeccionAula/?idperiodo=" + periodo.value + "&idgradoseccion=" + gradoseccion.value, function (data) {
+
+            llenarCombo(data, document.getElementById("cboCurso"), true);
+
+        })
+    }
+
+}
+
 function listar() {
 
-    $.get("findAll/PeriodoGCurso", function (data) {
+    $.get("listar/GradoSeccionAula", function (data) {
 
-        crearListado(["ID", "PERIODO", "GRADO", "CURSO"], data);
+        crearListado(["ID", "PERIODO", "GRADO", "CURSO", "DOCENTE"], data);
     })
 
-    $.get("comboPeriodo/PeriodoGradoCurso", function (data) {
+    $.get("listarPeriodos/GradoSeccionAula", function (data) {
 
         llenarCombo(data, document.getElementById("cboPeriodo"), true);
     })
 
-    $.get("comboGrado/PeriodoGCurso", function (data) {
+    $.get("listarGradoSeccion/GradoSeccionAula", function (data) {
 
         llenarCombo(data, document.getElementById("cboGrado"), true);
     })
 
-    $.get("comboCurso/PeriodoGCurso", function (data) {
+    $.get("listarAula/GradoSeccionAula", function (data) {
 
-        llenarCombo(data, document.getElementById("cboCurso"), true);
+        llenarCombo(data, document.getElementById("cboAula"), true);
     })
+
+    $.get("listarDocente/GradoSeccionAula", function (data) {
+
+        llenarCombo(data, document.getElementById("cboDocente"), true);
+    })
+
+    $.get("listarDocente/GradoSeccionAula", function (data) {
+
+        llenarCombo(data, document.getElementById("cboDocente"), true);
+    })
+
 }
 
-listar();
+
+
+
+
+
+
 
 
 function crearListado(arrayColumnas, data) {
@@ -81,6 +127,7 @@ function crearListado(arrayColumnas, data) {
         searching: false
     });
 }
+
 
 function llenarCombo(data, control, primerElemento) {
 
@@ -143,11 +190,18 @@ function abrirModal(id) {
 
     } else {
 
-        $.get("recuperarInfo/PeriodoGCurso/?id_pgc=" + id, function (data) {
+        $.get("recuperarInfo/GradoSeccionAula/?id_re=" + id, function (data) {
             document.getElementById("txtId").value = data[0].IID;
             document.getElementById("cboPeriodo").value = data[0].IIDPERIODO;
-            document.getElementById("cboGrado").value = data[0].IIDGRADO;
-            document.getElementById("cboCurso").value = data[0].IIDCURSO;
+            document.getElementById("cboGrado").value = data[0].IIDGRADOSECCION;
+            $.get("listarCursos/GradoSeccionAula/?idperiodo=" + periodo.value + "&idgradoseccion=" + gradoseccion.value, function (rpta) {
+
+                llenarCombo(rpta, document.getElementById("cboCurso"), true);
+                document.getElementById("cboCurso").value = data[0].IIDCURSO;
+            })
+            document.getElementById("cboDocente").value = data[0].IIDDOCENTE;
+            document.getElementById("cboAula").value = data[0].IIDAULA;
+
 
         });
     }
@@ -163,18 +217,22 @@ function agregar() {
         var periodo = document.getElementById("cboPeriodo").value;
         var grado = document.getElementById("cboGrado").value;
         var curso = document.getElementById("cboCurso").value;
+        var docente = document.getElementById("cboDocente").value;
+        var aula = document.getElementById("cboAula").value;
 
         frm.append("IID", id);
         frm.append("IIDPERIODO", periodo);
-        frm.append("IIDGRADO", grado);
+        frm.append("IIDGRADOSECCION", grado);
         frm.append("IIDCURSO", curso);
+        frm.append("IIDDOCENTE", docente);
+        frm.append("IIDAULA", aula);
         frm.append("BHABILITADO", 1);
 
         if (confirm("¿Desea realmente guardar?") == 1) {
 
             $.ajax({
                 type: "POST",
-                url: "guardarDatos/PeriodoGCurso",
+                url: "guardarDatos/GradoSeccionAula",
                 data: frm,
                 contentType: false,
                 processData: false,
@@ -203,7 +261,7 @@ function eliminar(id) {
 
     if (confirm("Desea eliminar") == 1) {
 
-        $.get("eliminar/PeriodoGCurso/?id_periodo=" + id, function (data) {
+        $.get("eliminar/GradoSeccionAula/?id_gr=" + id, function (data) {
             if (data == 0) {
                 alert("Ocurrio un error");
             } else {
@@ -213,3 +271,6 @@ function eliminar(id) {
         })
     }
 }
+
+
+
